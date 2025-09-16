@@ -60,3 +60,64 @@ nav {
 .links a:hover::after {
   width: 100%;
 }
+
+/* ==================== إضافات السلة و Dark Mode ==================== */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart-icon {
+  text-decoration: none;
+  font-size: 22px;
+  position: relative;
+  color: #fff;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background-color: #f39c12;
+  color: #111;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.dark-toggle {
+  padding: 5px 12px;
+  background-color: #f39c12;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode Body */
+body.dark {
+  background-color: #111;
+  color: #fff;
+}
+
+body.dark nav {
+  background-color: #222;
+}
+
+body.dark .links a {
+  color: #fff;
+}
+
+body.dark .links a:hover {
+  color: #f39c12;
+}
+
+body.dark .dark-toggle {
+  background-color: #f39c12;
+  color: #111;
+}

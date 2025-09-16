@@ -1,25 +1,27 @@
-// src/App.jsx
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer"; // ✅ استدعاء الفوتر
+import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import CartPage from "./pages/CartPage";
 
-function App() {
+export default function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <Router>
-      <Navbar />
+      <Navbar cart={cart} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products" element={<ProductsPage cart={cart} setCart={setCart} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
       </Routes>
-      <Footer />  {/* ✅ الفوتر ثابت في كل الصفحات */}
+      <Footer />
     </Router>
   );
 }
-
-export default App;

@@ -1,4 +1,4 @@
-// src/pages/Products.jsx
+// src/pages/ProductsPage.jsx
 import { motion } from "framer-motion";
 
 // الصور
@@ -49,7 +49,11 @@ const productsData = [
   },
 ];
 
-export default function Products() {
+export default function ProductsPage({ cart, setCart }) {
+  const handleAddToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
   return (
     <div style={styles.container}>
       <h1 style={styles.pageTitle}>Our Products</h1>
@@ -66,16 +70,14 @@ export default function Products() {
               >
                 <div style={styles.imageWrapper}>
                   <img src={product.img} alt={section.category} style={styles.image} />
-                  <motion.a
-                    href="#"
+                  <motion.button
+                    onClick={() => handleAddToCart(product)}
                     style={styles.button}
-                    initial={{ opacity: 0, y: 20 }}
                     whileHover={{ scale: 1.1 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Add to Cart
-                  </motion.a>
+                  </motion.button>
                 </div>
                 <div style={styles.productInfo}>
                   <p style={styles.productPrice}>{product.price}</p>
@@ -90,69 +92,15 @@ export default function Products() {
 }
 
 const styles = {
-  container: {
-    padding: "50px 20px",
-    maxWidth: "1200px",
-    margin: "0 auto",
-  },
-  pageTitle: {
-    textAlign: "center",
-    fontSize: "36px",
-    marginBottom: "50px",
-    fontWeight: "bold",
-  },
-  section: {
-    marginBottom: "60px",
-  },
-  categoryTitle: {
-    fontSize: "28px",
-    marginBottom: "20px",
-    fontWeight: "600",
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-    gap: "20px",
-  },
-  card: {
-    overflow: "hidden",
-    borderRadius: "12px",
-    cursor: "pointer",
-    position: "relative",
-    boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-    backgroundColor: "#fff",
-  },
-  imageWrapper: {
-    position: "relative",
-    overflow: "hidden",
-  },
-  image: {
-    width: "100%",
-    height: "250px",
-    objectFit: "cover",
-    display: "block",
-    transition: "transform 0.3s ease",
-  },
-  button: {
-    position: "absolute",
-    bottom: "15px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    padding: "10px 25px",
-    backgroundColor: "#f39c12",
-    color: "#111",
-    borderRadius: "30px",
-    textDecoration: "none",
-    fontWeight: "bold",
-    opacity: 0,
-  },
-  productInfo: {
-    padding: "10px 15px",
-    textAlign: "center",
-  },
-  productPrice: {
-    fontSize: "14px",
-    fontWeight: "500",
-    color: "#f39c12",
-  },
+  container: { padding: "50px 20px", maxWidth: "1200px", margin: "0 auto" },
+  pageTitle: { textAlign: "center", fontSize: "36px", marginBottom: "50px", fontWeight: "bold" },
+  section: { marginBottom: "60px" },
+  categoryTitle: { fontSize: "28px", marginBottom: "20px", fontWeight: "600" },
+  grid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "20px" },
+  card: { overflow: "hidden", borderRadius: "12px", cursor: "pointer", position: "relative", boxShadow: "0 4px 15px rgba(0,0,0,0.2)", backgroundColor: "#fff" },
+  imageWrapper: { position: "relative", overflow: "hidden" },
+  image: { width: "100%", height: "250px", objectFit: "cover", display: "block", transition: "transform 0.3s ease" },
+  button: { position: "absolute", bottom: "15px", left: "50%", transform: "translateX(-50%)", padding: "10px 25px", backgroundColor: "#f39c12", color: "#111", borderRadius: "30px", border: "none", fontWeight: "bold", cursor: "pointer" },
+  productInfo: { padding: "10px 15px", textAlign: "center" },
+  productPrice: { fontSize: "14px", fontWeight: "500", color: "#f39c12" },
 };
